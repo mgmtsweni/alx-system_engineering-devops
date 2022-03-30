@@ -2,9 +2,9 @@
 
 git add *
 
-git status
-
 git reset -- master/gitDeploy
+
+git status
 
 git commit -m "updates"
 
