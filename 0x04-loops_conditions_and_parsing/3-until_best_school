@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#Displays "Best School" x10 using until.
+
+i=0
+until [ ! $i -lt 10 ]
+do
+  echo "Best School"
+  i=$(( i + 1 ))
+done

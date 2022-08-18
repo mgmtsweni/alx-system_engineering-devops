@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#Displays "Best School" and say hi.
+
+i=0
+while [ $i -lt 10 ]
+do
+  echo "Best School"
+  if [ $i == 8 ]
+    then
+        echo -e "Best School\nHi"
+    fi
+  i=$(( i + 1 ))
+done
+
