@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 #Displays "Best School" and say hi.
 
-i=0
-while [ $i -lt 10 ]
-do
+i=1
+while [ "$i" -lt 11 ]; do
   echo "Best School"
-  if [ $i == 8 ]
-    then
-        echo -e "Best School\nHi"
-    fi
+  
+  # if statement to print Hi when i is 9
+  if [ "$i" -eq 9 ]; then
+    echo "Hi"
+  fi
+
   i=$(( i + 1 ))
 done
