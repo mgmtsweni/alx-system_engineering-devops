@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#Process and PID file
+
+rmfile(){'rm /var/run/myscript.pid; exit $?'}
+
+echo $$ > "/var/run/myscript.pid"
+trap 'echo "I hate the kill command"; '"$rmfile" SIGTERM
+trap 'echo "Y U no love me?!"' SIGINT
+trap '\n'"$rmfile" SIGQUIT
+
+while true
+do
+  echo "To infinity and beyond"
+  sleep 2
+done
