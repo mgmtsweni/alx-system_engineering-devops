@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 #Displays all active IPv4s on machine
 
-ifconfig | grep "inet addr" | cut -f2 -d " " | cut -f1 -d ":"
+ifconfig | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | cut -b 11-
