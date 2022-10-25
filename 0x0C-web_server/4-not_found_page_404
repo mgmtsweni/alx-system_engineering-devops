@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 404 Not Found Page
+# 404 Not Found Page.
 
 string='server_name _;\n\n\trewrite \^\/redirect_me https:\/\/www.youtube.com\/watch\?v=QH2-TGUlwu4 permanent;/'
 sudo apt update -y
