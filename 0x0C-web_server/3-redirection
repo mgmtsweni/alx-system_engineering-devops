@@ -7,7 +7,8 @@ config="\\\tlocation /redirect_me {return 301 $link permanent;}"
 
 apt-get -y update
 apt-get -y install nginx
-ufw allow 'Nginx HTTP'
-echo -e "Hello World!" > /var/www/html/index.html
+chown -R ubuntu /var/www
+echo -e "Hello World!" > /var/www/html//var/www/html/index.html
+echo -e "Hello World!" > /var/www/html/index.nginx-debian.html
 sed -i "30i $config" /etc/nginx/sites-available/default
-sudo service nginx restart
+sudo service nginx start
