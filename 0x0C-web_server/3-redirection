@@ -5,8 +5,8 @@
 link="https://www.youtube.com/watch?v=QH2-TGUlwu4"
 config="\\\tlocation /redirect_me {return 301 $link permanent;}"
 
-sudo apt-get -y update
-sudo apt-get -y install nginx
+apt-get -y update
+apt-get -y install nginx
 ufw allow 'Nginx HTTP'
 echo -e "Hello World!" > /var/www/html/index.html
 sed -i "30i $config" /etc/nginx/sites-available/default
