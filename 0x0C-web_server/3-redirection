@@ -3,10 +3,10 @@
 # redirect_me is redirecting to another page
 
 link="https://www.youtube.com/watch?v=QH2-TGUlwu4"
-config="\\\tlocation /redirect_me {return 301 $link permanent;}"
+config="\\\tlocation /redirect_me {\n\t\t return 301 $link;\n\t}\n"
 
-apt-get -y update
-apt-get -y install nginx
-echo -e "Hello World!" > /var/www/html//var/www/html/index.html
-sed -i "30i $config" /etc/nginx/sites-available/default
+sudo apt-get update
+sudo apt-get -y install nginx
+echo "Hello World!" | sudo tee /usr/share/nginx/html/index.html
+sudo sed -i "30i $config" /etc/nginx/sites-available/default
 sudo service nginx start
