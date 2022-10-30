@@ -1,17 +1,13 @@
 #!/usr/bin/env bash
 # 404 Not Found Page.
 
-link="https://www.youtube.com/watch?v=QH2-TGUlwu4"
-config="server_name _;\n\trewrite ^/redirect_me/$ $link permanent;"
-location_error="location = /404.html {\n\t\troot /var/www/html/;\n\t\tinternal;\n"
-error_directive="error_page 404 /404.html;\n\t$location_error"
-error_404="}\n\n\t$error_directive\t}"
+config="\\\terror_page 404 /404.html;\n\tlocation = /404.html {\n\t\troot /usr/share/nginx/html;\n\t\tinternal;\n\t}"
 
-apt update
-apt install -y nginx
+#install and start nginx
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo service nginx start
 ufw allow 'Nginx HTTP'
-echo "Hello World!" > /var/www/html/index.html
-echo "Ceci n'est pas une page" > /var/www/html/404.html
-sed -i "s|server_name\ _;|$config|" /etc/nginx/sites-available/default
-sed -i "0,/}/ s|}|$error_404|" /etc/nginx/sites-available/default
-service nginx restart
+echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/404.html
+sudo sed -i "27i $config" /etc/nginx/sites-available/default
+sudo service nginx restart

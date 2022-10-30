@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 # install nginx server.
 
+#install and start nginx
 sudo apt-get -y update
 sudo apt-get -y install nginx
+sudo service nginx start
+#creates a page that contains Hello World! string
 sudo mkdir /usr/share/nginx/html/
 sudo touch /usr/share/nginx/html/index.html
 echo "Hello World!" > /usr/share/nginx/html/index.html
 sudo service nginx restart
-curl -sI 100.26.49.249/redirect_me/
