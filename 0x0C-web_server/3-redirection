@@ -2,18 +2,15 @@
 # Configure your Nginx server so that \
 # redirect_me is redirecting to another page
 
-link="https://www.youtube.com/watch?v=QH2-TGUlwu4"
-config="\\\trewrite ^/redirect_me {\n\t\t return 301 $link;\n\t}"
-
 #install and start nginx
 sudo apt-get -y update
 sudo apt-get -y install nginx
 sudo service nginx start
-ufw allow 'Nginx HTTP'
+sud ufw allow 'Nginx HTTP'
 #creates a page that contains Hello World! string
 sudo mkdir /var/www/html/
 sudo touch /var/www/html/index.nginx-debian.html
 echo 'Hello World!' > /var/www/html/index.nginx-debian.html
 #/redirect_me is redirecting to another page & is 301 Moved Permanently
-sudo sed -i "30i $config" /etc/nginx/sites-available/default
+sudo sed -i '/listen 80 default_server;/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
 sudo service nginx restart

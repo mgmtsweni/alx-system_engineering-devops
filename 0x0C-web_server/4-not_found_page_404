@@ -7,10 +7,11 @@ config="\\\terror_page 404 /404.html;\n\tlocation = /404.html {\n\t\troot /usr/s
 sudo apt-get -y update
 sudo apt-get -y install nginx
 sudo service nginx start
-ufw allow 'Nginx HTTP'
+sudo ufw allow 'Nginx HTTP'
 #creates a page that contains "Ceci n'est pas une page"
-sudo mkdir /var/www/html/
-sudo touch /var/www/html/404.html
-echo "Ceci n'est pas une page" > /var/www/html/404.html
-sudo sed -i "30i $config" /etc/nginx/sites-available/default
+echo 'Hello World!' > /var/www/html/index.nginx-debian.html
+sudo sed -i '/listen 80 default_server;/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+echo "Ceci n'est pas une page" > /usr/share/nginx/html/custom_404.html
+sudo sed -i '/server_name _;/a error_page 404 /custom_404.html;\nlocation = /custom_404.html {\nroot /usr/share/nginx/html;\ninternal;\n}' /etc/nginx/sites-available/default
+sudo service nginx start
 sudo service nginx restart
