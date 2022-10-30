@@ -7,6 +7,6 @@ config="\\\tlocation /redirect_me {\n\t\t return 301 $link;\n\t}\n"
 
 sudo apt-get update
 sudo apt-get -y install nginx
-echo "Hello World!" | sudo tee /usr/share/nginx/html/index.html
+echo "Hello World!" > /usr/share/nginx/html/index.html
 sudo sed -i "30i $config" /etc/nginx/sites-available/default
 sudo service nginx start
