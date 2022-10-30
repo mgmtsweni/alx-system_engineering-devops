@@ -1,6 +1,5 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 # What's keeping my ubuntu from listening to port 80
-
 sudo rm /etc/nginx/sites-enabled/default
 ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 service nginx restart
