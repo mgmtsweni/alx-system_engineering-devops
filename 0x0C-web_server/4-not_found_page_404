@@ -8,6 +8,10 @@ sudo apt-get update
 sudo apt-get -y install nginx
 sudo service nginx start
 ufw allow 'Nginx HTTP'
-echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/404.html
-sudo sed -i "27i $config" /etc/nginx/sites-available/default
+#creates a page that contains "Ceci n'est pas une page"
+sudo mkdir /usr/share/nginx/html
+sudo touch /usr/share/nginx/html/404.html
+echo "Ceci n'est pas une page" > /usr/share/nginx/html/404.html
+
+sudo sed -i "30i $config" /etc/nginx/sites-available/default
 sudo service nginx restart
