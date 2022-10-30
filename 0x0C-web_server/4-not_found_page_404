@@ -4,14 +4,13 @@
 config="\\\terror_page 404 /404.html;\n\tlocation = /404.html {\n\t\troot /usr/share/nginx/html;\n\t\tinternal;\n\t}"
 
 #install and start nginx
-sudo apt-get update
+sudo apt-get -y update
 sudo apt-get -y install nginx
 sudo service nginx start
 ufw allow 'Nginx HTTP'
 #creates a page that contains "Ceci n'est pas une page"
-sudo mkdir /usr/share/nginx/html
-sudo touch /usr/share/nginx/html/404.html
-echo "Ceci n'est pas une page" > /usr/share/nginx/html/404.html
-
+sudo mkdir /var/www/html/
+sudo touch /var/www/html/404.html
+echo "Ceci n'est pas une page" > /var/www/html/404.html
 sudo sed -i "30i $config" /etc/nginx/sites-available/default
 sudo service nginx restart
