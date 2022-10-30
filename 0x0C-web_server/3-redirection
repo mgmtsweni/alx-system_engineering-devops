@@ -8,8 +8,8 @@ config="\\\trewrite ^/redirect_me $link permanent;"
 sudo apt-get update
 sudo apt-get -y install nginx
 
-sudo mkdir /etc/nginx/html
-sudo touch /etc/nginx/html/index.html
-echo "Hello World!" > /etc/nginx/html/index.html
+sudo mkdir /usr/share/nginx/html
+sudo touch /usr/share/nginx/html/index.html
+echo "Hello World!" > /usr/share/nginx/html/index.html
 sudo sed -i "30i $config" /etc/nginx/sites-available/default
 sudo service nginx start
