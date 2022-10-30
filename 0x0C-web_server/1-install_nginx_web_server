@@ -9,5 +9,5 @@ sudoufw allow 'Nginx HTTP'
 #creates a page that contains Hello World! string
 sudo mkdir /var/www/html/
 sudo touch /var/www/html/index.nginx-debian.html
-echo 'Hello World!' > /var/www/html/index.nginx-debian.html
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
 sudo service nginx restart

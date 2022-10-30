@@ -10,7 +10,7 @@ sud ufw allow 'Nginx HTTP'
 #creates a page that contains Hello World! string
 sudo mkdir /var/www/html/
 sudo touch /var/www/html/index.nginx-debian.html
-echo 'Hello World!' > /var/www/html/index.nginx-debian.html
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
 #/redirect_me is redirecting to another page & is 301 Moved Permanently
-sudo sed -i '/listen 80 default_server;/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+sudo sed -i "/listen 80 default_server;/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default
 sudo service nginx restart
