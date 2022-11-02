@@ -6,14 +6,14 @@ sudo apt-get -y update
 sudo apt-get -y install nginx
 sudo service nginx start
 sudo ufw allow 'Nginx HTTP'
-#creates a page that contains Hello World! string
+
 printf %s "server {
     listen 80;
     listen [::]:80 default_server;
-    root   /etc/nginx/html;
-    index  index.html index.htm;
+    root   /var/www/html/;
+    index index.html index.htm index.nginx-debian.html;
     location /redirect_me {
-        return 301 http://cuberule.com/;
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
     }
 }"
 #/redirect_me is redirecting to another page & is 301 Moved Permanently
