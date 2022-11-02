@@ -1,6 +1,6 @@
 #  Add a custom HTTP header with Puppet
 exec { 'apt-get-update':
-  command => '/usr/bin/apt-get update',
+  command => '/usr/bin/sudo apt-get update',
 }
 
 package { 'nginx':
