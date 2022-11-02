@@ -2,12 +2,12 @@
 # shellcheck disable=SC2154
 # configures a brand new server’s hostnames
 
-#install and start nginx
+# install and start nginx
 sudo apt-get -y update
 sudo apt-get -y install nginx
 sudo service nginx start
 sudo ufw allow 'Nginx HTTP'
 sudo echo 'Hello World!' > /var/www/html/index.nginx-debian.html
-sed -i '/listen 80 default_server;/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
-sed -i '/listen 80 default_server;/a add_header X-Served-By $hostname;' /etc/nginx/sites-available/default
+sudo sed -i '/listen 80 default_server;/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+sudo sed -i '/listen 80 default_server;/a add_header X-Served-By $hostname;' /etc/nginx/sites-available/default
 sudo service nginx restart
