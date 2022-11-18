@@ -15,7 +15,7 @@ if __name__ == "__main__":
     TOTAL_NUM_OF_TASKS = 0
     NUMBER_OF_DONE_TASKS = 0
     TASK_TITLE = []
-    
+
     for task in todos.json():
         if task.get('userId') == int(userId):
             TOTAL_NUM_OF_TASKS += 1
