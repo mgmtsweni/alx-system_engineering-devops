@@ -9,16 +9,7 @@ def number_of_subscribers(subreddit):
     returns the number of subscribers
     """
     url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
-    headers = {
-        'Accept': 'application/json',
-        'User-Agent': ' '.join([
-            'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
-            'AppleWebKit/537.36 (KHTML, like Gecko)',
-            'Chrome/97.0.4692.71',
-            'Safari/537.36',
-            'Edg/97.0.1072.62'
-        ])
-    }
+    headers = {'user-agent': 'my-app/0.0.1'}
 
     req = get(url, headers=headers, allow_redirects=False).json()
     subscribers = req.get('data', {}).get('subscribers')
