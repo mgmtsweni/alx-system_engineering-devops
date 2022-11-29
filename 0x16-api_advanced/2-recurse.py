@@ -3,9 +3,9 @@
 from requests import get
 
 
-def recurse(subreddit, hot_list=[], after = None):
+def recurse(subreddit, hot_list=[], after= one):
     """
-    recursive function that queries the Reddit API and returns a list 
+    recursive function that queries the Reddit API and returns a list
     containing the titles of all hot articles for a given subreddit
     """
     url = "https://www.reddit.com/r/{}/about.json".format(subreddit, after)
