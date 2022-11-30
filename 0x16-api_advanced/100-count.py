@@ -3,7 +3,7 @@
 from requests import get
 
 
-def count_words(subreddit, word_list, after="", word_dic={}):
+def count_words(subreddit, word_list, after="", words={}):
     """
     function that returns a list containing the titles of all hot articles
     """
@@ -19,12 +19,12 @@ def count_words(subreddit, word_list, after="", word_dic={}):
     }
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     
-    if not word_dic:
+    if not words:
         for word in word_list:
-            word_dic[word] = 0
+            words[word] = 0
 
     if after is None:
-        word_list = [[key, value] for key, value in word_dic.items()]
+        word_list = [[key, value] for key, value in words.items()]
         word_list = sorted(word_list, key=lambda x: (-x[1], x[0]))
         for w in word_list:
             if w[1]:
@@ -51,9 +51,9 @@ def count_words(subreddit, word_list, after="", word_dic={}):
             lower = [s.lower() for s in title.split(' ')]
 
             for w in word_list:
-                word_dic[w] += lower.count(w.lower())
+                words[w] += lower.count(w.lower())
 
     except ValueError:
         return None
 
-    return count_words(subreddit, word_list, after, word_dic)
+    return count_words(subreddit, word_list, after, words)
