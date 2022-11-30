@@ -5,7 +5,7 @@ from requests import get
 
 def top_ten(subreddit):
     """Retrieves the title of the top ten posts from a given subreddit."""
-    url = "https://www.reddit.com/r/{}/hot".format(subreddit)
+    url = 'https://www.reddit.com'
     headers = {
         'Accept': 'application/json',
         'User-Agent': ' '.join([
@@ -21,6 +21,7 @@ def top_ten(subreddit):
     res = get(
         '{}/r/{}/.json?sort={}&limit={}'.format(
             url,
+            subreddit,
             sort,
             limit
         ),
