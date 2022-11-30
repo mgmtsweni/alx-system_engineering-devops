@@ -31,14 +31,7 @@ def recurse(subreddit, hot_list=[], after=None):
         return None
 
     try:
-        js = re.json()
-
-    except ValueError:
-        return None
-
-    try:
-
-        data = js.get("data")
+        data = re.json().get("data")
         after = data.get("after")
         children = data.get("children")
         for child in children:
