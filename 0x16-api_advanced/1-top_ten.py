@@ -22,7 +22,6 @@ def top_ten(subreddit):
 
     re = get(url, headers=headers, allow_redirects=False)
 
-
     if re.status_code != 200:
         print(None)
         return None
@@ -41,5 +40,5 @@ def top_ten(subreddit):
             post = child.get("data")
             print(post.get("title"))
 
-    except:
+    except Exception:
         print(None)
