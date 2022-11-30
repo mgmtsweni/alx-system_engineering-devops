@@ -1,18 +1,15 @@
 #!/usr/bin/python3
-'''A module containing functions for working with the Reddit API.
-'''
-import requests
-
-
-BASE_URL = 'https://www.reddit.com'
-'''Reddit's base API URL.
-'''
+"""functions for working with the Reddit API."""
+from requests import get
 
 
 def recurse(subreddit, hot_list=[], n=0, after=None):
-    '''Retrieves a list of hot posts from a given subreddit.
-    '''
-    api_headers = {
+    """
+    Retrieves a list of hot posts from a given subreddit.
+    """
+    url = "https://www.reddit.com/r/{}/hot".format(subreddit)
+    link = ""
+    headers = {
         'Accept': 'application/json',
         'User-Agent': ' '.join([
             'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
@@ -24,16 +21,14 @@ def recurse(subreddit, hot_list=[], n=0, after=None):
     }
     sort = 'hot'
     limit = 30
-    res = requests.get(
-        '{}/r/{}/.json?sort={}&limit={}&count={}&after={}'.format(
-            BASE_URL,
-            subreddit,
+    res = get('{}/.json?sort={}&limit={}&count={}&after={}'.format(
+            url,
             sort,
             limit,
             n,
             after if after else ''
         ),
-        headers=api_headers,
+        headers=headers,
         allow_redirects=False
     )
     if res.status_code == 200:
