@@ -22,23 +22,9 @@ def top_ten(subreddit):
 
     re = get(url, headers=headers, allow_redirects=False)
 
-    if re.status_code != 200:
-        print(None)
-        return None
-
-    try:
-        js = re.json()
-
-    except ValueError:
-        print(None)
-        return None
-
-    try:
-        data = js.get("data")
-        children = data.get("children")
-        for child in children[:10]:
-            post = child.get("data")
-            print(post.get("title"))
-
-    except Exception:
-        print(None)
+    if re.status_code == 200:
+        top = re.json()
+        for i in range(10):
+            print(top['data']['children'][i]['data']['title'])
+    else:
+        return print('None')
