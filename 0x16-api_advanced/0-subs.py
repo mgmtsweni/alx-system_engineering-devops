@@ -33,6 +33,6 @@ def number_of_subscribers(subreddit):
     if data:
         subscribers = data.get("subscribers")
         if not subscribers:
-            return 0
+            return subscribers
 
     return 0
