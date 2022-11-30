@@ -20,20 +20,32 @@ def recurse(subreddit, hot_list=[], after= None):
         ])
     }
 
-    if subreddit is None:
+    params = {
+        'limit': 100,
+        'after': after
+    }
+
+    re = get(url, headers=headers, params=params, allow_redirects=False)
+    
+    if re.status_code != 200:
         return None
 
-    req = get(url, headers=headers, allow_redirects=False).json()
-    if req.status_code == 200:
-        top = req.json()
-        key = top['data']['after']
-        parent = top['data']['children']
+    try:
+        js = re.json()
 
-        for obj in parent:
-            hot_list.append(obj['data']['title'])
-
-        if key is not None:
-            recurse(subreddit, hot_list, key)
-        return hot_list
-    else:
+    except ValueError:
         return None
+
+    try:
+
+        data = js.get("data")
+        after = data.get("after")
+        children = data.get("children")
+        for child in children:
+            post = child.get("data")
+            hot_list.append(post.get("title"))
+
+    except:
+        return None
+
+    return recurse(subreddit, hot_list, after)
