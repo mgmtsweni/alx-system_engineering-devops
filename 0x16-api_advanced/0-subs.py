@@ -17,21 +17,22 @@ def number_of_subscribers(subreddit):
         ])
     }
 
-    re = get(url, headers=headers, allow_redirects=False)
+    res = get(url, headers=headers, allow_redirects=False)
 
-    if re.status_code != 200:
+    if res.status_code != 200:
         return 0
 
     try:
-        js = re.json()
+        js = res.json()
 
     except ValueError:
         return 0
 
-    results = js.get("results")
+    data = js.get("data")
 
-    if results:
-        subscribers = results.get("subscribers")
+    if data:
+        subscribers = data.get("subscribers")
         if not subscribers:
             return 0
-    return subscribers
+
+    return 0
