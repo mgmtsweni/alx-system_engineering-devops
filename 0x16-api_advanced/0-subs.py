@@ -1,13 +1,10 @@
 #!/usr/bin/python3
-"""queries the Reddit API for all subscribers"""
+""" How many subs? """
 from requests import get
 
 
 def number_of_subscribers(subreddit):
-    """
-    A function that queries the Reddit API and 
-    returns the number of subscribers (not active users
-    """
+    """ Returns subscriber count of subreddit or 0 """
     url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
     headers = {
         'Accept': 'application/json',
@@ -24,12 +21,15 @@ def number_of_subscribers(subreddit):
 
     if re.status_code != 200:
         return 0
+
     try:
         js = re.json()
+
     except ValueError:
         return 0
 
     results = js.get("results")
+
     if results:
         subscribers = results.get("subscribers")
         if not subscribers:
