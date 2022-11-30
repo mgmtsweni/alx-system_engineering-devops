@@ -31,8 +31,7 @@ def number_of_subscribers(subreddit):
     data = js.get("data")
 
     if data:
-        sub_count = data.get("subscribers")
-        if sub_count:
-            return sub_count
-
-    return 0
+        subscribers = data.get("subscribers")
+        if not subscribers:
+            return 0
+    return subscribers
