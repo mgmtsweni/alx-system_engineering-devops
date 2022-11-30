@@ -7,7 +7,7 @@ def recurse(subreddit, hot_list=[], n=0, after=None):
     """
     Retrieves a list of hot posts from a given subreddit.
     """
-    url = 'https://www.reddit.com'
+    url = "https://www.reddit.com/r/{}/hot".format(subreddit)
     headers = {
         'Accept': 'application/json',
         'User-Agent': ' '.join([
@@ -20,10 +20,8 @@ def recurse(subreddit, hot_list=[], n=0, after=None):
     }
     sort = 'hot'
     limit = 30
-    res = get(
-        '{}/r/{}/.json?sort={}&limit={}&count={}&after={}'.format(
+    res = get('{}/.json?sort={}&limit={}&count={}&after={}'.format(
             url,
-            subreddit,
             sort,
             limit,
             n,
