@@ -4,17 +4,9 @@ from requests import get
 
 
 def top_ten(subreddit):
-    """
-    A function that queries the Reddit API and prints the titles
-    of the first 10 hot posts listed for a given subreddit
-    """
-    sort = 'top'
-    limit = 10
-    url = "https://www.reddit.com/r/{}".format(subreddit)
-    link = "{}/about.json?sort={}&limit={}&count={}&after={}".format(
-            url,
-            sort,
-            limit,)
+    '''Retrieves the title of the top ten posts from a given subreddit.
+    '''
+    url = 'https://www.reddit.com'
     headers = {
         'Accept': 'application/json',
         'User-Agent': ' '.join([
@@ -25,12 +17,20 @@ def top_ten(subreddit):
             'Edg/97.0.1072.62'
         ])
     }
-
-    re = get(link, headers=headers, allow_redirects=False)
-
-    if re.status_code == 200:
-        top = re.json()
-        for i in range(10):
-            print(top['data']['children'][i]['data']['title'])
+    sort = 'top'
+    limit = 10
+    res = get(
+        '{}/r/{}/.json?sort={}&limit={}'.format(
+            url,
+            subreddit,
+            sort,
+            limit
+        ),
+        headers=headers,
+        allow_redirects=False
+    )
+    if res.status_code == 200:
+        for post in res.json()['data']['children'][0:10]:
+            print(post['data']['title'])
     else:
-        return print('None')
+        print(None)
