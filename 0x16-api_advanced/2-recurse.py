@@ -8,7 +8,6 @@ def recurse(subreddit, hot_list=[], n=0, after=None):
     Retrieves a list of hot posts from a given subreddit.
     """
     url = "https://www.reddit.com/r/{}/hot".format(subreddit)
-    link = ""
     headers = {
         'Accept': 'application/json',
         'User-Agent': ' '.join([
