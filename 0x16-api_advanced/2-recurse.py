@@ -27,14 +27,25 @@ def recurse(subreddit, hot_list=[], after=None):
 
     re = get(url, headers=headers, params=params, allow_redirects=False)
 
-    if re.status_code == 200:
+    if re.status_code != 200:
+        return None
+
+    try:
         js = re.json()
+
+    except ValueError:
+        return None
+
+    try:
+
         data = js.get("data")
         after = data.get("after")
         children = data.get("children")
         for child in children:
             post = child.get("data")
             hot_list.append(post.get("title"))
-        return recurse(subreddit, hot_list, after)
-    else:
+
+    except Exception:
         return None
+
+    return recurse(subreddit, hot_list, after)
