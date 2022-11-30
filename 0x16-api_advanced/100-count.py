@@ -37,14 +37,7 @@ def count_words(subreddit, word_list, after="", word_dic={}):
         return None
 
     try:
-        js = r.json()
-
-    except ValueError:
-        return None
-
-    try:
-
-        data = js.get("data")
+        data = r.json().get("data")
         after = data.get("after")
         children = data.get("children")
         for child in children:
@@ -55,7 +48,7 @@ def count_words(subreddit, word_list, after="", word_dic={}):
             for w in word_list:
                 word_dic[w] += lower.count(w.lower())
 
-    except:
+    except ValueError:
         return None
 
-    count_words(subreddit, word_list, after, word_dic)
+    return count_words(subreddit, word_list, after, word_dic)
