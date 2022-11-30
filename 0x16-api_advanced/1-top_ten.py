@@ -20,9 +20,20 @@ def top_ten(subreddit):
         ])
     }
 
-    req = get(url, headers=headers, allow_redirects=False).json()
-    top_ten = req.get('data', {}).get('children', {})
-    if not top_ten:
+    re = get(url, headers=headers, allow_redirects=False)
+
+    if re.status_code != 200:
         print(None)
-    for i in top_ten:
-        print(i.get('data').get('title'))
+    try:
+        js = re.json()
+    except ValueError:
+        print(None)
+
+    try:
+        results = js.get("results")
+        children = results.get("children")
+        for child in children[:10]:
+            post = child.get("results")
+            print(post.get("title"))
+    except:
+        print(None)
