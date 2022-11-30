@@ -1,13 +1,12 @@
 #!/usr/bin/python3
-""" Count it titles of all hot articles"""
+""" Count it list containing the titles of all hot articles"""
 from requests import get
 
 
 def count_words(subreddit, word_list, after="", word_dic={}):
     """
-    A Function of a list containing the titles of all hot articles
+    function that returns a list containing the titles of all hot articles
     """
-    url = "https://www.reddit.com/r/{}/about.json".format(subreddit, after)
     headers = {
         'Accept': 'application/json',
         'User-Agent': ' '.join([
@@ -18,7 +17,8 @@ def count_words(subreddit, word_list, after="", word_dic={}):
             'Edg/97.0.1072.62'
         ])
     }
-
+    url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
+    
     if not word_dic:
         for word in word_list:
             word_dic[word] = 0
