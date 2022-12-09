@@ -4,7 +4,7 @@ exec {'improve nginx perfomance':
   path    =>  '/usr/local/bin/:/bin/'
 } ->
 
-exec { 'Restart Nginx':
-  command   =>  'sudo  service nginx restart',
-  path      =>  '/etc/init.d'
+exec {'Restart Nginx':
+  command =>  'sudo  service nginx restart',
+  path    =>  '/etc/init.d'
 }
